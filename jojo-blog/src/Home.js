@@ -1,43 +1,10 @@
-import { useEffect, useState } from "react";
 import BlogList from "./componenets/BlogList";
+import useFetch from "./customHooks/useFetch";
 
 const Home = () => {
-    
-const [blogs,setBlogs]=useState();
-const [isPending,setIsPending]=useState(true);
-const [error,setError]=useState(null);
+    const {data : blogs,isPending,error}= useFetch("http://localhost:8000/blogs");
 
 
-
-//   const handleDelete=(id)=>{
-//     console.log("blog id:",id)
-//     const newBlogs=blogs.filter((blog)=>blog.id!==id);
-//     setBlogs(newBlogs);
-// };
-
-useEffect(()=>{
-    console.log("use effects running")
-    fetch("http://localhost:8000/blogs")
-    .then(res=>{
-        console.log("res ",res)
-        if(!res.ok){
-            setIsPending(false);
-            throw Error("could not fetch the data..")
-        }
-        return res.json();
-    })
-    .then(data=>{
-        console.log("data :",data)
-        setBlogs(data);
-        setIsPending(false);
-        setError(null)
-    })
-    .catch(err=>{
-        console.log(err.message);
-        setIsPending(false);
-        setError(err.message)
-    })
-},[]);
 
 
     return ( 
