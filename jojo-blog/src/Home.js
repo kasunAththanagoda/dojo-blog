@@ -28,7 +28,7 @@ const [blogs,setBlogs]=useState([
 
 useEffect(()=>{
     console.log("use effects running")
-},[]);
+},[blogs]);
 
 
     return ( 
