@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BlogList from "./componenets/BlogList";
 
 const Home = () => {
@@ -26,11 +26,15 @@ const [blogs,setBlogs]=useState([
     setBlogs(newBlogs);
 };
 
+useEffect(()=>{
+    console.log("use effects running")
+},[]);
+
 
     return ( 
         <div className="Home">
             <BlogList blogs={blogs} title="All Blogs" handleDelete={handleDelete}></BlogList>
-            <BlogList blogs={blogs.filter((blog)=>blog.author==="mario")} title="mario's Blogs"></BlogList>
+            {/* <BlogList blogs={blogs.filter((blog)=>blog.author==="mario")} title="mario's Blogs"></BlogList> */}
            
         </div>
      );
