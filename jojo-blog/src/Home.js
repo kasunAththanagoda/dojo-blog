@@ -18,9 +18,18 @@ const [blogs,setBlogs]=useState([
     }
   ]);
 
+
+
+  const handleDelete=(id)=>{
+    console.log("blog id:",id)
+    const newBlogs=blogs.filter((blog)=>blog.id!==id);
+    setBlogs(newBlogs);
+};
+
+
     return ( 
         <div className="Home">
-            <BlogList blogs={blogs} title="All Blogs"></BlogList>
+            <BlogList blogs={blogs} title="All Blogs" handleDelete={handleDelete}></BlogList>
             <BlogList blogs={blogs.filter((blog)=>blog.author==="mario")} title="mario's Blogs"></BlogList>
            
         </div>
